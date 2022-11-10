@@ -37,7 +37,7 @@ authors_short: First Author \emph{et al.}
 
 # Introduction
 
-As part of the BioHackathon Europe 2022, we here report...
+This project will improve the integration of Plant data standards with important interoperability technologies. Indeed, some interoperability technologies have already been established with BrAPI, MIAPPE and ISA (Tab/JSON) for Phenotyping data, but the link between phenotype and omics data needs to be improved. The latter can rather be well described using bioschemas and therefore it will be useful for plant researchers to build a graph dataset embedding both MIAPPE and Bioschemas annotated data. We will enable plant researchers' friendly data archive by embedding the main plant standards (MIAPPE, BrAPI, ISA) in RO Crate. To link with the current activities of the plant communities, and to ease the integration of more diverse data types, a bridge with Bioschemas will be set up by finalizing the MIAPPE Bioschemas mapping initiated during the 2021 biohackathon. To demonstrate the interest of this, real data will be converted from existing sources (BrAPI, ISA Tab, MIAPPE databases) to RO Crate and Bioschemas to sketch some proof-of-concept use case (eg, showing phenotyping network on a map, showing the link between expression and phenotype data, …).
 
 # Formatting
 
