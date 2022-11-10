@@ -62,12 +62,23 @@ A figure is added with:
 
 ![Caption for BioHackrXiv logo figure](./biohackrxiv.png)
 
-# Other main section on your manuscript level 1
+# ISA
 
-Lists can be added with:
+placeholder
 
-1. Item 1
-2. Item 2
+# RO-Crate
+
+Four RO-Crate profiles (see clear RO-crate profile example)
+Flat structure and disentangle the ISA structure into indidual profiles, so that all metadata can be accessed directly and avoid nested structure. So as a practical result of this is that workflow system or tools have direct access to the metadata (e.g. GALAXY, Knowledge Graphs, etc). As a rule of thumb the annotation schema used for the description of the dataset is more general at the top of the hierarchy, when possible more general terms should be preferred when describing fields / parameters.
+
+1. ISA-Investigation Profile: Description on the Investigation of the ISA only relying on Schema.org for type definitions. This enables global findability (e.g. Google Dataset Search). 
+2. ISA-Study Profile: Description on an individual Study of the ISA in question relying on Bioschemas for type definitions (where possible).
+3. ISA-Assay Profile: Description on an Assay of the ISA in question relying on ISA terminology.
+4. MIAPPE Profile: Description of special MIAPPE related fields, not directly describable in Schema.org, Bioschemas, or ISA terms.
+
+# Bioschemas
+
+placeholder
 
 # Citation Typing Ontology annotation
 
