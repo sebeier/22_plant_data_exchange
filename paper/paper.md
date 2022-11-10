@@ -1,10 +1,14 @@
 ---
-title: 'BioHackEU22 Template'
-title_short: 'BioHackEU22 #26: unknown chemical substances'
+title: 'BioHackEU22 Project 22: Plant data exchange and standard interoperability'
+title_short: 'BioHackEU22 #22: Plants'
 tags:
-  - cheminformatics
-  - PubChem
-  - unknown chemical substances
+  - MIAPPE
+  - ISA
+  - RO-Crate
+  - ARC
+  - Bioschemas
+  - BrAPI
+  - SWATE
 authors:
   - name: First Author
     affiliation: 1
@@ -16,15 +20,15 @@ affiliations:
     index: 1
   - name: Second Affiliation
     index: 2
-date: 8 November 2022
+date: 10 November 2022
 cito-bibliography: paper.bib
 event: BH22EU
 biohackathon_name: "BioHackathon Europe 2022"
 biohackathon_url:   "https://biohackathon-europe.org/"
 biohackathon_location: "Paris, France, 2022"
-group: Project 26
+group: Project 22
 # URL to project git repo --- should contain the actual paper.md:
-git_url: https://github.com/biohackrxiv/publication-template
+git_url: [https://github.com/biohackrxiv/publication-template](https://github.com/sebeier/22_plant_data_exchange)
 # This is the short authors description that is used at the
 # bottom of the generated paper (typically the first two authors):
 authors_short: First Author \emph{et al.}
