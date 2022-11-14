@@ -61,17 +61,16 @@ biohackathon_location: "Paris, France, 2022"
 group: Project 22
 
 git_url: https://github.com/sebeier/22_plant_data_exchange
-
-<!-- This is the short authors description that is used at the bottom of the generated paper (typically the first two authors): -->
-
-authors_short: First Author \emph{et al.}
+authors_short: Daniel Arend \emph{et al.}
 
 ---
 
 
 # Introduction
 
-The overall goal of this years project initiated by the ELIXIR plant community was the improvement of common plant data standards according to their interoperability. Several technologies have been already established in the past within BrAPI, MIAPPE and ISA for phenomics data. Nevertheless the linkage between phenomics and other omics data is still lacking.
+The overall goal of this year's BioHackathon Europe project, initiated by the ELIXIR plant community, was to improve shared plant data standards in terms of their interoperability. Several technologies and data formats for plant science have already been created in the past. These include the metadata standard MIAPPE (Minimal Information on a Plant Phenotyping Experiment) which can define a phenotyping experiment in its completeness. A particularly noteworthy part of MIAPPE is the way biological samples are described. Not only is the exact taxonomic name recorded here, but also information about the lineage, passport data about the sample and at what stage of development and from which anatomical entity the sample was obtained. MIAPPE is then represented in file form using tables. One often used form uses the ISA framework (Investigation-Study-Assay), either as ISA-tab or ISA JSON. For web resources, such as data warehouses and databases, BrAPI has been created. With this, data can be retrieved and transferred programmatically via RESTful services, BrAPI is fully MIAPPE compliant. For search engines and annotation of data on the internet there is Schema.org, for the life sciences there is the further development Bioschemas, which also attempts to map MIAPPE, but does not yet support final mappings. There is also still a lack of linkage between phenomics and other omics data.
+
+During the ELIXIR BioHackathon Europe 2021 first groundwork had been established to map Bioschemas to MIAPPE. Certain fields were still under discussion because it was not possible to unambiously map every field.
 
 
 <!-- This project will improve the integration of Plant data standards with important interoperability technologies. Indeed, some interoperability technologies have already been established with BrAPI, MIAPPE and ISA (Tab/JSON) for Phenotyping data, but the link between phenotype and omics data needs to be improved. The latter can rather be well described using bioschemas and therefore it will be useful for plant researchers to build a graph dataset embedding both MIAPPE and Bioschemas annotated data. We will enable plant researchers' friendly data archive by embedding the main plant standards (MIAPPE, BrAPI, ISA) in RO Crate. To link with the current activities of the plant communities, and to ease the integration of more diverse data types, a bridge with Bioschemas will be set up by finalizing the MIAPPE Bioschemas mapping initiated during the 2021 biohackathon. To demonstrate the interest of this, real data will be converted from existing sources (BrAPI, ISA Tab, MIAPPE databases) to RO Crate and Bioschemas to sketch some proof-of-concept use case (eg, showing phenotyping network on a map, showing the link between expression and phenotype data, …).--> 
@@ -127,7 +126,7 @@ placeholder
 
 # FAIR Cookbook Recipe "MIAPPE -> ISA"
 
-During the discussions we realized, that several challenges according to the mapping of MIAPPE compliant phenomic data to ISA were already discussed in the past. In addition, some of the previously described mappings need to be somehow formalised to help the data producers as well data curators. Therefore we decided to draft a FAIRCookbook recipe explaining how to describe common phenotypic studies in a MIAPPE compliant way as ISA. This can be probably a subsection or mature variant of an "ISA" recipe and potentially help data producers as well as data curators.
+During the discussions we realized, that several challenges according to the mapping of MIAPPE compliant phenomic data to ISA were already discussed in the past. In addition, some of the previously described mappings need to be somehow formalised to help the data producers as well data curators. Therefore we decided to draft a FAIRCookbook recipe explaining how to describe common phenotypic studies in a MIAPPE compliant way as ISA. This can be probably a subsection or mature variant of an "ISA" recipe and potentially help data producers as well as data curators. The basis for this recipe could be the existing description from the https://github.com/MIAPPE/ISA-Tab-for-plant-phenotyping repository. It contain different section according to the different ISA components.
 
 # Citation Typing Ontology annotation
 
@@ -154,6 +153,6 @@ Possible CiTO typing annotation include:
 
 ## Acknowledgements
 
-...
+This work was funded by ELIXIR, the research infrastructure for life-science data. Discussions and work were conducted during the ELIXIR BioHackathon 2022 in Paris, France.
 
 ## References
