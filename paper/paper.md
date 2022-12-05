@@ -17,24 +17,37 @@ authors:
   - name: Sebastian Beier
     orcid: 0000-0002-2177-8781
     affiliation: 2
-  - name: Erwan Le Floch
-    orcid: 0000-0002-1010-6859
-    affiliation: 3
   - name: Laurent Bouri
     orcid: 0000-0002-2297-1559
     affiliation: 3
   - name: Marco Brandizi
     orcid: 0000-0002-5427-2496
     affiliation: 4
-  - name: Cyril Pommier
-    orcid: 0000-0002-9040-8733
+  - name: Donald Hobern
+    orcid: 0000-0001-6492-4016
+    affiliation: 5
+  - name: Erwan Le Floch
+    orcid: 0000-0002-1010-6859
     affiliation: 3
   - name: Timo Mühlhaus
     orcid: 0000-0003-3925-6778
-    affiliation: 5
+    affiliation: 6
+  - name: Cyril Pommier
+    orcid: 0000-0002-9040-8733
+    affiliation: 3
+  - name: Stuart Owen
+    orcid: 0000-0003-2130-0865
+    affiliation: 7
   - name: Philippe Rocca-Serra
     orcid: 0000-0001-9853-5668
-    affiliation: 6
+    affiliation: 8
+  - name: Thomas Rosnet
+    orcid: 0000-0003-0676-5461
+    affiliation: 9
+  - name: Stian Soiland-Reyes
+    orcid: 0000-0001-9842-9718
+    affiliation: 7
+    
 affiliations:
   - name: Leibniz Institute for Plant Genetics and Crop Plant Research (IPK) Gatersleben, Germany
     index: 1
@@ -42,12 +55,19 @@ affiliations:
     index: 2
   - name: Université Paris-Saclay, INRAE, URGI, France
     index: 3
-  - name: Rothamsted Research, Harpenden, UK
+  - name: Rothamsted Research, Harpenden, United Kingdom
     index: 4
-  - name: Technical University Kaiserslautern, Germany
+  - name: Australian Plant Phenomics Facility, Adelaide, Australia
     index: 5
-  - name: University of Oxford, UK
+  - name: Technical University Kaiserslautern, Germany
     index: 6
+  - name: University of Manchester, United Kingdom
+    index: 7
+  - name: University of Oxford, United Kingdom
+    index: 8
+  - name: Aix Marseille Univ, INSERM, TAGC, Marseille, France
+    index: 9
+
 date: 10 November 2022
 cito-bibliography: paper.bib
 event: BH22EU
@@ -56,82 +76,112 @@ biohackathon_url:   "https://biohackathon-europe.org/"
 biohackathon_location: "Paris, France, 2022"
 group: Project 22
 git_url: https://github.com/sebeier/22_plant_data_exchange
-authors_short: Daniel Arend \emph{et al.}
+authors_short: Daniel Arend \emph{et al.} **all authors are in alphabetical order**
 ---
-
-
 # Introduction
 
-The overall goal of this year's BioHackathon Europe project, initiated by the ELIXIR Plant Sciences Community, was to improve shared plant data standards in terms of their interoperability. Several technologies and data formats for plant science have already been created in the past. These include the metadata standard [MIAPPE](https://www.miappe.org/) (Minimal Information on a Plant Phenotyping Experiment), which can define a phenotyping experiment in its completeness [@citesAsAuthority:Papoutsoglou2020]. A particularly noteworthy part of MIAPPE is the way biological samples are described. Not only is the exact taxonomic name recorded here, but also information about the lineage, passport data, the developmental stage and the anatomical entity from which the sample was obtained. The representation in file form for MIAPPE can vary, but a common way is via tables. One often used solution is the [ISA framework](https://isa-tools.org/format/specification.html/) (Investigation-Study-Assay), either as ISA-tab or ISA JSON [@citesAsAuthority:Rocca_Serra2010]. For web resources, such as data warehouses and databases, the Breeding API [BrAPI](https://www.brapi.org/) has been created, which is fully MIAPPE-compliant [@citesAsAuthority:Selby2019]. This allows data to be retrieved and transferred programmatically via RESTful services. In order to make plant experimental datasets findable, websites in which such datasets are described can be annotated using Schema.org. Unfortunately, Schema.org does not provide domain-specific keywords, but there are several projects that extend Schema.org. For the life sciences this is [Bioschemas](https://www.bioschemas.org/) [@citesAsAuthority:gray2017]. MIAPPE is still not yet fully supported by Bioschemas. All these different options provide a broad basis for representing phenomics datasets and the possibility to store them. When it comes to linking phenomics with other data domains, e.g. omics-based data, there are still significant shortcomings and hardly any methods to integrate data from these data domains.
+The overall goal of this year's BioHackathon Europe project, initiated by the ELIXIR Plant Sciences Community, was to improve shared plant data standards in terms of their interoperability. Several technologies and data formats for plant science have already been created in the past. These include in particular the [MIAPPE](https://www.miappe.org/) metadata standard (Minimal Information on Plant Phenotyping Experiments), which can define a dataset of phenotyping experiment in its completeness [@citesAsAuthority:Papoutsoglou2020]. Some elements require extra attention to enable FAIR reusability and interoperability of MIAPPE datasets and particularly the way biological samples are described and identified. Not only is the exact taxonomic name recorded here, but also information about the lineage, passport data which include the variety identification as well as the samplig the developmental stage and the anatomical entity for mollecular assays. MIAPPE is implemented in databases, web services such as [Breeding API](https://brapi.or) [@citesAsAuthority:Selby2019]) and file sets commonly represented as tables. The [MIAPPE training template](https://github.com/MIAPPE/MIAPPE/tree/master/MIAPPE_Checklist-Data-Model-v1.1/MIAPPE_templates) demonstrate this, as well as a MIAPPE ISA-Tab implementation using the [ISA framework](https://isa-tools.org/format/specification.html/) (Investigation-Study-Assay), either as ISA-Tab or ISA JSON [@citesAsAuthority:Rocca_Serra2010]. The Breeding API allows data retrieval and transfer programmatically via RESTful services either as whole datasets or by subsellecting relevant dataset parts. 
+In order to make plant experimental datasets findable, websites in which such datasets are described may be annotated using Schema.org. While Schema.org does not provide domain-specific keywords, several projects aim to extend Schema.org. For the life sciences, [Bioschemas](https://www.bioschemas.org/) [@citesAsAuthority:gray2017] is one such effort. The main components of MIAPPE are already supported by Bioschemas, such as the biological material and the traits and enable already efficient findability. But the plant community wants to go beyond that and represent the connection between phenomics and other data domains, e.g. omics-based data, using technologies like knowledge graphs. For that objective, significant shortcomings still remain and hardly any method exist to integrate data from these data domains.
 
-During the ELIXIR BioHackathon Europe 2021 first groundwork had been established to fully map Bioschemas to MIAPPE. Certain fields were still under discussion because it was not possible to unambiously map every field. A desired outcome of the BioHackathon 2022 was the completed and finalised mapping between MIAPPE and Bioschemas.
+During the ELIXIR BioHackathon Europe 2021, first groundwork had been established to fully map Bioschemas and MIAPPE. Certain fields were still under discussion because it was not possible to unambiguously map every one of them. A desired outcome of the BioHackathon 2022 was the completed and finalised mapping between MIAPPE and Bioschemas.
 
-# ISA
+# The ISA framework
 
-The open source ISA framework helps plant science to manage an increasingly diverse range of experiments using one or a combination of multiple technologies. The framework is centered around the three entities Investigation (the project), Study (the experimental setup) and Assay (the description of analytical measurements or transformation of data). The idea is that data models and serialisations (tabular, JSON and RDF) help experimentalists to provide a comprehensive description of the entire experimental metadata (sample characteristics, technology and protocols used, measurement types and data transformation, relationships between samples and data) so that the results and findings produced are reproducible and reusable by other scientists.
+The open source ISA framework [@citesAsAuthority:Rocca_Serra2010], for reporting experimental work in life sciences, helps plant scientists manage a diverse range of experiments using one or a combination of data modalities and technologies. The framework is centered around three entities: Investigation (the project or dataset), Study (the experimental setup) and Assay (the description of analytical measurements or transformation of data). The idea is that data models and serialisations (tabular, JSON and RDF) help experimentalists provide a comprehensive description of the entire experimental metadata (biological material and sample characteristics, technology and protocols used, measurement types and data transformation, relationships between samples and data) so that the results and findings generated can be reproduced and reused by other scientists.
 
-During the Hackathon it became apparent that an extension of ISA to support analytic or measurement results within the data model was urgently needed to support the MIAPPE use case. Assays usually only describe the process on how results were obtained and not the actual result values. Therefore, discussions led to two possible solutions which were added as pull request to the ISA github repository: 
-1. Extend the assay tables to include measurement values. This should be avoided for larger number of results [(git)](https://github.com/ISA-tools/isa-api/issues/473).
-2. Keep results in a separate file linked in the assay table [(git)](https://github.com/ISA-tools/isa-api/issues/475).
+## DataPLANT Data Management 
 
+The DataPLANT consortium (https://www.nfdi4plants.de), which is part of the German [NFDI](https://www.nfdi.de/?lang=en) (National Research Data Infrastructure), adopted the ISA model to describe various types of plant experiments and built a data structure called [ARC](https://nfdi4plants.org/nfdi4plants.knowledgebase/docs/implementation/AnnotatedResearchContext.html/) (annotated research context), relying on ISA for experimental metadata,  [CWL](https://www.commonwl.org/) for computational metadata, and [git](https://git-scm.com/) & [git-lfs](https://git-lfs.github.com/) for data storage. The approach allows version control, long term reproducible workflows (for both 'wet' and 'dry' labs) and complete user access and provenance. To collect experimental metadata, DataPLANT has developed MS Excel-based tools, available as a plug-in called [SWATE](https://nfdi4plants.org/nfdi4plants.knowledgebase/docs/implementation/Swate.html). The experimental metadata is conveniently stored in Excel spreadsheets (.xlsx) and can be marked up with ontology terms thanks to Excel widget performing terminology lookups over a community-driven ontology service. This service allows to crowdsource ontology management and therefore helps to bridge the ontology gap.
 
-Within the DataPLANT consortium (https://www.nfdi4plants.de), which is part of the German [NFDI](https://www.nfdi.de/?lang=en) (National Research Data Infrastructure), the ISA model has been used extensively to describe all types of plant experiments. They propose a data structure that they call [ARC](https://nfdi4plants.org/nfdi4plants.knowledgebase/docs/implementation/AnnotatedResearchContext.html/) (annotated research context), which builds on the ISA structure and combines it with [git](https://git-scm.com/) and [CWL](https://www.commonwl.org/). This allows version control, long term reproducible workflows and complete user access and provenance. To store the experimental metadata, they have developed a tool based on MS Excel, which is available as a plug-in and is called [SWATE](https://nfdi4plants.org/nfdi4plants.knowledgebase/docs/implementation/Swate.html). The metadata is thus stored in Excel spreadsheets (.xlsx) and during the hackathon there was discussion about [formalising this representation of ISA](https://github.com/ISA-tools/isa-api/issues/474).
+During the BioHackathon, the issue of documentating recommended ISA implementation patterns was also raised. The outcome of these discussions have been [consolidated in a specific github issue](https://github.com/ISA-tools/isa-api/issues/474). Of particular interest and importance was the agreement to refer to CWL workflows from an ISA archive through ISA protocol objects, therefore providing an elegant solution to the issue of interoperation between two data standards covering different areas of concerns.
 
-# RO-Crate
+## ISA applied in Plant Phenotyping
 
-For simple and lightweight archiving and packaging, the scientific community has created the [RO-Crate](https://www.researchobject.org/ro-crate/) data standard. It is based on [Schema.org](https://www.schema.org/) markup annotations in [JSON-LD](https://json-ld.org/) and aims to make best practices for formal metadata description accessible and workable. In this context, an RO-Crate is a structured archive of all elements that have contributed to a research result, including their identifiers and origins.
+An existing ISA MIAPPE [mapping](https://github.com/MIAPPE/MIAPPE/tree/master/MIAPPE_Checklist-Data-Model-v1.1/MIAPPE_mapping) and [config](https://github.com/MIAPPE/ISA-Tab-for-plant-phenotyping) had already been published[@citesAsAuthority:cwiek-kupczynska_measures_2016] and improved [@citesAsAuthority:Papoutsoglou2020]. While it proved its efficiency, harmonisation and documentation are still needed with sample datasets ([DROPS](https://doi.org/10.15454/IASSTN) and [IPK Arabidopsis](http://dx.doi.org/10.5447/ipk/2020/3)). 
 
-RO-Crates based on ISA (either ISA JSON, ISA-Tab or ISA.xlsx) and have been intensively discussed for the data exchange of MIAPPE datasets during this BioHackathon. We recommend to create four RO-Crate profiles with a flat and disentangled ISA structure. This avoids nested data structures and grants direct access, which is necessary for tools, which can process the exposed metadata such as GALAXY or KnowledgeGraphs. 
+Based on those examples, the BioHackathon discussions showed the need to better formalise data files and their relationships. Indeed, MIAPPE datasets can contain (i) the "raw" data with direct measures on the microplots or plants (*i.e.* 
+2a-GrainYield_components_Plot_level.tab in the [DROPS](https://doi.org/10.15454/IASSTN) example ), as well as (ii) the derived data computed from several files of the first level (*i.e.* [BLUEs](https://doi.org/10.57745/RRETIO) or [genotype indices](https://doi.org/10.15454/IASSTN/CQDQ8B)) 
+2a-GrainYield_components_Plot_level.tab in the [DROPS](https://doi.org/10.15454/IASSTN) example ). Current ISA specifications only describe the process on how results were obtained and not the actual result values and does not describe the relationships between datafiles, *i.e.* the provenance. The discussions led to the following proposals:
 
-As a rule of thumb the annotation schema used for the description of the dataset is more general at the top of the hierarchy, when possible more general terms should be preferred when describing fields or parameters.
+1. Provenance handling
+    1. CWL seems a promising way to easily express the relationship between files. A CWL file could be added to the ISA archive for this purpose and referenced as a datafile property. 
+2. Data handling
+    1. Keep results in a separate file linked in the assay table [(git)](https://github.com/ISA-tools/isa-api/issues/475). Best practices for the external data file organisation should also be promoted [(git)](https://github.com/MIAPPE/MIAPPE/issues/71).
+    1. Extend the assay tables to include `measurement values`. This should be avoided for larger number of results [(git)](https://github.com/ISA-tools/isa-api/issues/473).
+
+# Packaging ISA with RO-Crate
+
+For simple and lightweight archiving and packaging, the scientific community has created the [RO-Crate](https://www.researchobject.org/ro-crate/) data standard. It is based on [Schema.org](https://www.schema.org/) markup annotations in [JSON-LD](https://json-ld.org/) and aims to make best practices for formal metadata description accessible and workable. In this context, an RO-Crate is a structured archive of all elements that have contributed to a research result, including their identifiers and origins. RO-Crate, therefore, is very generic and can easily receive any ontology of formalism to describe its content. Thus, it would be quite feasible to create a profile for the handling of ISA and MIAPPE. However, this would increase the maintenance workload for the community and the available tools need to be adapted to handle this profile. At the same time, such RO-Crate ISA profiles are of great interest for other use cases, such as [Seek4science](https://seek4science.org/) or [GALAXY](https://usegalaxy.eu/). As a consequence, the proposition is to clarify and improve the MIAPPE ISA implementation and to develop multiple RO-Crate-ISA profiles that wil allow to encapsulate MIAPPE datasets through ISA, hence bringing the expected interoperability. 
+
+RO-Crates ISA (either ISA JSON, ISA-Tab or ISA.xlsx) should rely on four RO-Crate profiles with a flat and disentangled ISA structure. This avoids nested data structures, which is necessary for tools such as GALAXY. 
+
+As a rule of thumb, the annotation scheme used to describe the dataset should be more general at the top of the hierarchy. For ISA, this means that the Investigation object should be described using very general terms, while the Study objects are described using less general terms and the Assay objects are described using specific terms.
 
 **1. ISA-Investigation Profile:**
-Description on the Investigation of the ISA only relying on Schema.org for type definitions. This enables to find and harvet the datasets, e.g. via Google Dataset Search. 
+Description of the ISA `Investigation` object only relying on Schema.org for type definitions. This enables to find and harvest datasets, e.g. via Google Dataset Search. 
 
 **2. ISA-Study Profile:**
-Description on an individual Study of the ISA in question relying on [Bioschemas](https://bioschemas.org/) for type definitions (where possible).
+Description of an individual ISA `Study` relying on [Bioschemas](https://bioschemas.org/) for type definitions (where possible).
 
 **3. ISA-Assay Profile:** 
-Description on an Assay of the ISA in question relying on ISA terminology.
+Description of an ISA`Assay` in question relying on ISA terminology.
 
 **4. MIAPPE Profile:** 
 Description of special MIAPPE related fields, not directly describable in Schema.org, Bioschemas, or ISA terms.
 
-# Bioschemas
+# Formalising the MIAPPE use case in Bioschemas
 
-placeholder
+[Bioschemas](https://bioschemas.org/) is an extension of the Schema.org project to cover life science data. Similarly to Schema.org, it aims at providing with a lightweight data semantics, which might be easier to use in situations such as annotating web pages or automatically exporting and integrating data if the data is modelled with informal semantics that go beyond traditional OWL-based ontologies.
 
-# FAIR Cookbook Recipe "MIAPPE -> ISA"
+During the BioHackathon, we continued the work started in 2021, first during the ELIXIR Implementation Study on Bioschemas and then during the BioHackathon by mapping the entities and fields in the MIAPPE specifications to Bioschemas types and defining extensions and modifications for the latter where necessary. This will eventually allow in the future to support cases like converting ISA datasets about field trials into Bioschemas-based RDF serializations (formats like [Turtle](https://www.w3.org/TR/turtle/) or [JSON-LD](https://www.w3.org/TR/json-ld11/)). BrAPI-to-Bioschemas has also been proposed and is facilitated by the fact that the BrAPI API specification for breeding trial data is already mapped to MIAPPE and ISA-Tab.
 
-During the discussions, we realised that several challenges related to the mapping of MIAPPE-compliant phenomic datasets to the ISA model have often caused confusion in their implementation in the past. In addition, some of the previously described mappings need to be formalised and concretised to help data producers and data curators ensure a consistent representation of the data. Therefore, we decided to write a FAIR cookbook recipe explaining how to describe common phenotypic studies in a MIAPPE-compliant way as an ISA dataset [@citesAsAuthority:rocca_serra_philippe_2022_6783564]. This can probably be a subsection or a mature variant of an "ISA" recipe. The basis for this recipe could be the existing description from the https://github.com/MIAPPE/ISA-Tab-for-plant-phenotyping repository. It already contains various sections for the different ISA components and needs only minor additions.
+The [details of this work](https://github.com/Rothamsted/agri-schemas/tree/master/doc/miappe-use-case) are reported on the [Agri-Schemas repository](https://github.com/Rothamsted/agri-schemas). Agri-Schemas is a project with the similar goal of using (or extending) Bioschemas to cover a wide range of agri-food related data, including molecular biology, field trials, weather data, agro-forestry. Once these data are represented by a common data standard such as Bioschemas, it will be possible to support a use case such as: 1) Building a knowledge base from web pages annotated with Bioschemas, or 2) Using a SPARQL endpoint to answer queries such as: What are the genotypes that give high yields in field trials and what biological processes are the genes involved in? Preliminary datasets on this basis have been published by the Knetminer team by importing data from Ensembl Plants [@citesAsAuthority:bolser_ensembl_2016] and the EBI Gene Expression Atlas [@citesAsAuthority:kapushesky_2009], among others.
 
-<!--
-# Citation Typing Ontology annotation
+# FAIR Cookbook Recipe on describing MIAPPE datasets as ISA
+<!--Introduction to FAIR cookbook -->
+During the discussions, we realised that several challenges related to the mapping of MIAPPE-compliant phenomic datasets to the ISA model have often caused confusion in their implementation in the past. In addition, some of the previously described mappings need to be formalised and concretised to help data producers and data curators ensure a consistent representation of the data. Therefore, we agreed to author a [FAIR cookbook](https://faircookbook.elixir-europe.org/content/home.html) recipe explaining how to describe common plant phenotypic studies in a MIAPPE-compliant way as an ISA dataset [@citesAsAuthority:rocca_serra_philippe_2022_6783564]. This can probably be a subsection or a mature variant of an "ISA" recipe. The basis for this recipe could be the existing description from the https://github.com/MIAPPE/ISA-Tab-for-plant-phenotyping repository. It already contains various sections for the different ISA components and needs only minor additions and modifications.
 
-You can use CiTO annotations, as explained in [this BioHackathon Europe 2021 write up](https://raw.githubusercontent.com/biohackrxiv/bhxiv-metadata/main/doc/elixir_biohackathon2021/paper.md) and [this CiTO Pilot](https://www.biomedcentral.com/collections/cito).
-Using this template, you can cite an article and indicate why you cite that article, for instance DisGeNET-RDF [@citesAsAuthority:Queralt2016].
+# Future developments beyond the BioHackathon Europe 2022
 
-Possible CiTO typing annotation include:
+Both MIAPPE and ISA (and the combination of both standards) will be improved through revised documentation and demonstration of best practises, including more sample datasets. The two ELIXIR data management portals [FAIR cookbook](https://faircookbook.elixir-europe.org/content/home.html) and [RDMkit](https://rdmkit.elixir-europe.org) will be used for this purpose. A dedicated recipe will be published in the FAIR cookbook and referenced in the [RDMkit plant phenomics tools assembly](https://rdmkit.elixir-europe.org/plant_phenomics_assembly) as well as on www.miappe.org.
+In parrallel, the necessary extensions of ISA for data processing and provenance tracability will be discussed at the end of 2022 with the aim of implementation in mid-2023.
 
-* citesAsDataSource: when you point the reader to a source of data which may explain a claim
-* usesDataFrom: when you reuse somehow (and elaborate on) the data in the cited entity
-* usesMethodIn
-* citesAsAuthority
-* discusses
-* extends
-* agreesWith
-* disagreesWith
--->
-# Results
-* Suggestion for ISA extention for full compatible MIAPPE mapping (validate & approve during BH Germany)
-* &#8594; Implementation of extention in Q1 2023
-* Suggestion for integration of ISA into RO-Crate by developing 4 corresponding profiles
-* Plan to draft FAIR cookbook recipe for MIAPPE to ISA mapping
-* &#8594; referenced on RDMKit and miappe.org
+## Building RO-Crate profiles
+The proposed RO-Crate profiles will need to be developed and implemented in close collaboration with the Galaxy use case.
 
-# Discussion
-
-...
+```mermaid
+flowchart LR
+    subgraph Data Providers
+        subgraph Investigation
+            subgraph Study
+                Assay
+            end
+        end
+        DP2[[ARC]] -->Investigation
+        BrAPI(BrAPI)
+        DP3[[PHIS/PIPPA]] --> BrAPI
+        DP4[[Seek4science]] --> BrAPI
+        DP1[[MIAPPE File Template]]
+    end
+    subgraph Data archives
+        BrAPI --> Investigation
+        Investigation --> Repo1[("Dataverse")]
+        Investigation --> Repo2[("e!DAL-PGP")]
+    end
+    subgraph RO-Crate
+        Investigation -->  ARCH2((Investigation profile))
+        Assay-->ARCH4((Assay profile))
+        DP1-->ARCH5((MIAPPE profile))
+        Study --> ARCH3((Study profile))
+        ARCH2--> gal>GALAXY]
+        ARCH3--> gal>GALAXY]
+        ARCH4--> gal>GALAXY]
+        ARCH5--> gal>GALAXY]
+    end
+DP1-->Investigation
+```
+## Bioschemas
+The MIAPPE/Bioschemas mapping has been finalised during the BioHackathon. We will demonstrate it by implementing the ISA-Tab and/or BrAPI converters mentioned above, which we will use to enrich the existing AgriSchemas-based datasets and develop use cases for data search and analysis. An example of the latter is a [student's project](https://github.com/Rothamsted/knetgraphs-gene-traits) developed within the Knetminer team, which shows the potential of Bioschemas-based knowledge graphs to extend the approach of gene-set enrichement analysis.
 
 ## Acknowledgements
 
