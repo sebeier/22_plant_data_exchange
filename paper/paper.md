@@ -150,38 +150,8 @@ In parallel, the necessary extensions of ISA for data processing and provenance 
 ## Building RO-Crate profiles
 The proposed RO-Crate profiles will need to be developed and implemented in close collaboration with the Galaxy use case.
 
-```mermaid
-flowchart LR
-    subgraph Data Providers
-        subgraph Investigation
-            subgraph Study
-                Assay
-            end
-        end
-        DP2[[ARC]] -->Investigation
-        BrAPI(BrAPI)
-        DP3[[PHIS/PIPPA]] --> BrAPI
-        DP4[[Seek4science]] --> BrAPI
-        DP1[[MIAPPE File Template]]
-    end
-    subgraph Data archives
-        BrAPI --> Investigation
-        Investigation --> Repo1[("Dataverse")]
-        Investigation --> Repo2[("e!DAL-PGP")]
-    end
-    subgraph RO-Crate
-        Investigation -->  ARCH2((Investigation profile))
-        Assay-->ARCH4((Assay profile))
-        DP1-->ARCH5((MIAPPE profile))
-        Study --> ARCH3((Study profile))
-        ARCH2--> gal>Galaxy]
-        ARCH3--> gal>Galaxy]
-        ARCH4--> gal>Galaxy]
-        ARCH5--> gal>Galaxy]
-    end
-DP1-->Investigation
-```
-![Figure 1:](./Figure1.svg)
+
+![Workflow of interaction between different systems and standards in the plant domain.](./Figure1.svg)
 
 Information systems such as [PHIS](http://www.phis.inra.fr/) or [PIPPA](https://www.psb.ugent.be/phenotyping/pippa) are able to generate MIAPPE compliant ISA datasets via BrAPI endpoints. The same is true for [Seek4science](https://seek4science.org/). Without these systems, it is also possible to create ISA data directly using the MIAPPE file templates or as an export from an [ARC](https://github.com/nfdi4plants/ARC-specification/blob/main/ARC%20specification.md).
 
