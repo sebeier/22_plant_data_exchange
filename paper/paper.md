@@ -129,11 +129,11 @@ Current ISA specifications only describe the process on how results were obtaine
 
 # Packaging ISA with RO-Crate
 
-For simple and lightweight archiving and packaging, the scientific community has created the [RO-Crate](https://www.researchobject.org/ro-crate/) data standard. It is based on [Schema.org](https://www.schema.org/) markup annotations in [JSON-LD](https://json-ld.org/) and aims to make best practices for formal metadata description accessible and workable. In this context, an RO-Crate is a structured archive of all elements that have contributed to a research result, including their identifiers and origins. RO-Crate, therefore, is very generic and can easily receive any ontology of formalism to describe its content. 
+For simple and lightweight archiving and packaging, the scientific community has created the [RO-Crate](https://www.researchobject.org/ro-crate/) data standard [@citesAsAuthority:10.3233/ds-210053]. It is based on [Schema.org](https://www.schema.org/) markup annotations in [JSON-LD](https://json-ld.org/) and aims to make best practices for formal metadata description accessible and workable. In this context, an RO-Crate is a structured archive of all elements that have contributed to a research result, including their identifiers and origins. RO-Crate, therefore, is very generic and can easily receive any ontology of formalism to describe its content. 
 
 Thus, it would be quite feasible to create a profile for the handling of ISA and MIAPPE. However, this would increase the maintenance workload for the community and the available tools need to be adapted to handle this profile. At the same time, such RO-Crate ISA profiles are of great interest for other use cases, such as [Seek4science](https://seek4science.org/) or [Galaxy](https://usegalaxy.eu/). As a consequence, the proposition is to clarify and improve the MIAPPE ISA implementation and to develop multiple RO-Crate-ISA profiles that wil allow to encapsulate MIAPPE datasets through ISA, hence bringing the expected interoperability. 
 
-RO-Crates ISA (either ISA JSON, ISA-Tab or ISA.xlsx) should rely on four RO-Crate profiles with a flat and disentangled ISA structure. This avoids nested data structures, which is necessary for tools such as GALAXY. 
+RO-Crates ISA (either ISA JSON, ISA-Tab or ISA.xlsx) should rely on four RO-Crate profiles with a flat and disentangled ISA structure. This avoids nested data structures, which is necessary for tools such as Galaxy. 
 
 As a rule of thumb, the annotation scheme used to describe the dataset should be more general at the top of the hierarchy. For ISA, this means that the Investigation object should be described using very general terms, while the Study objects are described using less general terms and the Assay objects are described using specific terms.
 
@@ -144,7 +144,7 @@ Description of the ISA `Investigation` object only relying on Schema.org for typ
 Description of an individual ISA `Study` relying on [Bioschemas](https://bioschemas.org/) for type definitions (where possible).
 
 **3. ISA-Assay Profile:** 
-Description of an ISA`Assay` in question relying on ISA terminology.
+Description of an ISA `Assay` in question relying on ISA terminology.
 
 **4. MIAPPE Profile:** 
 Description of special MIAPPE related fields, not directly describable in Schema.org, Bioschemas, or ISA terms.
