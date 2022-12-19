@@ -122,7 +122,7 @@ Based on those examples, the BioHackathon discussions showed the need to better 
 Current ISA specifications only describe the process on how results were obtained and not the actual result values and does not describe the relationships between datafiles, *i.e.* the provenance. The discussions led to the following proposals:
 
 1. Provenance handling
-    1. CWL seems a promising way to easily express the relationship between files. A CWL file could be added to the ISA archive for this purpose and referenced as a datafile property. 
+    1. CWLProv seems a promising way to easily express the relationship between files [@citesAsAuthority:khan_2019]. A CWLProv file could be added to the ISA archive for this purpose and referenced as a datafile property. 
 2. Data handling
     1. Keep results in a separate file linked in the assay table [(git)](https://github.com/ISA-tools/isa-api/issues/475). Best practices for the external data file organisation should also be promoted [(git)](https://github.com/MIAPPE/MIAPPE/issues/71).
     1. Extend the assay tables to include `measurement values`. This should be avoided for larger number of results [(git)](https://github.com/ISA-tools/isa-api/issues/473).
