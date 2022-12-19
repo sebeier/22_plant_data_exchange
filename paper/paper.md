@@ -61,7 +61,7 @@ affiliations:
     index: 5
   - name: Technical University Kaiserslautern, Germany
     index: 6
-  - name: Dpeartment of Computer Science, The University of Manchester, United Kingdom
+  - name: Department of Computer Science, The University of Manchester, United Kingdom
     index: 7
   - name: University of Oxford, United Kingdom
     index: 8
